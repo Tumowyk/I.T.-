@@ -1,202 +1,324 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ремонт Електроніки — Ivan Tymoshuk</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Світ Електроніки — навчись електроніці, створюй проєкти, вирішуй проблеми та експериментуй!">
+  <meta name="keywords" content="електроніка, навчання, компоненти, схеми, DIY, ремонт, мікроконтролери, фізика електроніки">
+  <meta name="author" content="Світ Електроніки">
+  <title>Світ Електроніки</title>
   <style>
+    /* Загальні стилі */
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
       color: #333;
+      transition: background 0.3s, color 0.3s;
       line-height: 1.6;
     }
-
     header {
-      background-color: #2c3e50;
-      color: #fff;
-      padding: 30px 0;
+      background: linear-gradient(to right, #003973, #e5e5be);
+      color: white;
+      padding: 40px;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-bottom: 5px solid #ffd700;
     }
-
     header h1 {
-      font-size: 2.8rem;
+      font-size: 3em;
       margin: 0;
-      font-weight: bold;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    header button {
+      background-color: #ffd700;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+    header button:hover {
+      background-color: #ffbb33;
     }
 
-    header nav {
-      margin-top: 20px;
+    /* Навігація */
+    nav {
+      background: #002b5c;
+      padding: 15px 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #ffd700;
     }
-
-    header nav a {
-      color: #fff;
+    nav a {
+      color: white;
+      margin: 10px 20px;
       text-decoration: none;
-      font-size: 1.1rem;
-      margin: 0 15px;
-      transition: color 0.3s ease;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #ffd700;
+      color: #002b5c;
     }
 
-    header nav a:hover {
-      color: #e67e22;
-    }
-
+    /* Основний контейнер */
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
-
-    section {
-      background-color: #fff;
-      padding: 50px 30px;
-      margin-bottom: 40px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #003973;
     }
-
-    section:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    section h2 {
-      font-size: 2rem;
-      color: #333;
-      text-align: center;
+    .container h2 {
+      font-size: 2.2em;
+      color: #003973;
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 10px;
       margin-bottom: 20px;
     }
-
-    .service-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .container p {
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+    .columns {
+      display: flex;
+      flex-wrap: wrap;
       gap: 20px;
+      justify-content: space-between;
+    }
+    .column {
+      flex: 1;
+      min-width: 250px;
+    }
+    iframe {
+      max-width: 100%;
+      margin: 20px 0;
+      border: 3px solid #003973;
+      border-radius: 10px;
     }
 
-    .service-list li {
-      background: #ecf0f1;
-      padding: 25px;
+    /* Відповіді на FAQ */
+    .faq-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, background 0.3s ease;
+      border-left: 4px solid #ffd700;
     }
-
-    .service-list li:hover {
-      transform: translateY(-10px);
-      background: #e67e22;
-      color: #fff;
-    }
-
-    .service-list li h3 {
-      font-size: 1.4rem;
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: #3498db;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 5px;
-      text-decoration: none;
+    .faq-question {
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      font-size: 1.1em;
+      color: #555;
     }
 
-    .button:hover {
-      background-color: #2980b9;
+    /* Темна тема */
+    .dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+    .dark-mode .container {
+      background-color: #2c2c2c;
+    }
+    .dark-mode nav {
+      background-color: #222;
+    }
+    .dark-mode nav a {
+      color: #f0f0f0;
+    }
+    .dark-mode nav a:hover {
+      background-color: #ffd700;
+      color: #002b5c;
+    }
+    .dark-mode footer {
+      background-color: #222;
     }
 
-    footer {
-      background-color: #2c3e50;
-      color: #fff;
+    /* Зміни для мобільних пристроїв */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      .columns {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    /* Підготовка кнопки наверх */
+    .top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+padding: 12px 18px;
+      background: #003973;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      transition: background 0.3s;
+    }
+    .top-button:hover {
+      background-color: #ffd700;
+    }
+footer {
+      background: #002b5c;
+      color: white;
+      padding: 20px;
       text-align: center;
-      padding: 20px 0;
-      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    footer p {
+      font-size: 1.2em;
     }
 
-    footer a {
-      color: #e67e22;
+    /* Вставка кольорових блоків для важливих посилань */
+    .external-links {
+      background-color: #e0f7fa;
+      border-left: 5px solid #00acc1;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+      font-size: 1.2em;
+    }
+    .external-links h2 {
+      color: #00796b;
+    }
+    .external-links a {
+      color: #00796b;
+      font-weight: bold;
       text-decoration: none;
+      transition: 0.3s;
+    }
+    .external-links a:hover {
+      color: #004d40;
     }
 
-    @media (max-width: 768px) {
-      header nav {
-        display: block;
-        margin-top: 20px;
-      }
-
-      header nav a {
-        display: block;
-        margin-bottom: 10px;
-      }
-
-      .service-list {
-        grid-template-columns: 1fr;
-      }
+    /* Стиль для додаткових контейнерів з інтерактивним контентом */
+    .quiz, .game {
+      margin-top: 20px;
+      background: #eef;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #003973;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>I.T ЕЛЕКТРОНІКА </h1>
-    <nav>
-      <a href="#services">Послуги</a>
-      <a href="#about">Про мене</a>
-      <a href="#contact">Контакти</a>
-    </nav>
+    <h1>Світ Електроніки</h1>
+    <p>Навчайся. Експериментуй. Створюй.</p>
+    <button onclick="toggleDarkMode()">Темна тема</button>
   </header>
 
-  <div class="container">
-    <section id="services">
-      <h2>Послуги</h2>
-      <ul class="service-list">
-        <li>
-          <h3>Ремонт павербанків</h3>
-          <p>Якісний ремонт і заміна компонентів у павербанках.</p>
-        </li>
-        <li>
-          <h3>Зарядні пристрої та кабелі</h3>
-          <p>Ремонт зарядних пристроїв і кабелів будь-яких типів.</p>
-        </li>
-        <li>
-          <h3>Побутова електроніка</h3>
-          <p>Ремонт побутових електронних приладів — від телевізорів до мікрохвильовок.</p>
-        </li>
-        <li>
-          <h3>Заміна акумуляторів</h3>
-          <p>Заміна акумуляторів в шуруповертах та інших пристроях.</p>
-        </li>
-        <li>
-          <h3>Чистка і профілактика</h3>
-          <p>Чистка та профілактика електроніки для збільшення її тривалості служби.</p>
-        </li>
-      </ul>
-      <p><a class="button" href="https://t.me/Ivan230809" target="_blank">Замовити ремонт</a></p>
-    </section>
-<section id="about">
-      <h2>Про мене</h2>
-      <p>Мене звати Тимошук Іван, я спеціалізуюсь на ремонті електроніки. Працюю швидко, акуратно та з гарантією. Моя мета — забезпечити найкращий сервіс для кожного клієнта.</p>
-    </section>
+  <nav>
+    <a href="#theory">Теорія</a>
+    <a href="#components">Компоненти</a>
+    <a href="#projects">Проєкти</a>
+    <a href="#troubles">Несправності</a>
+    <a href="#faq">FAQ</a>
+    <a href="#physics">Фізика</a>
+    <a href="#digital">Цифрова електроніка</a>
+    <a href="#analog">Аналогова електроніка</a>
+    <a href="#microcontrollers">Мікроконтролери</a>
+  </nav>
 
-    <section id="contact">
-      <h2>Контакти</h2>
-      <p>Телефон: <a href="tel:+380966446988"><strong>096 644 6988</strong></a></p>
-      <p>Telegram: <a href="https://t.me/Ivan230809" target="_blank">@Ivan230809</a></p>
-      <p><a class="button" href="https://t.me/Ivan230809" target="_blank">Написати в Telegram</a></p>
-    </section>
+  <div class="container" id="theory">
+    <h2>Базова теорія</h2>
+    <p>Що таке струм, напруга, опір, потужність. Закон Ома. Пояснення для новачків з прикладами. Як працює коло.</p>
+    <iframe src="https://www.falstad.com/circuit/" height="400"></iframe>
+    <p><b>Струм:</b> це потік електронів через провідник, вимірюється в амперах (A).</p>
+    <p><b>Напруга:</b> це різниця потенціалів між двома точками кола, вимірюється в вольтах (V).</p>
+    <p><b>Опір:</b> це властивість матеріалу протидіяти протіканню струму, вимірюється в омах (Ω).</p>
+  </div>
+
+  <div class="container" id="components">
+    <h2>Компоненти</h2>
+    <p>Електроніка базується на різноманітних компонентах, які виконують важливі функції в схемах. Ось кілька основних:</p>
+    <ul>
+      <li><b>Резистори:</b> елементи, що обмежують струм в електричних колах.</li>
+      <li><b>Конденсатори:</b> елементи, які зберігають енергію в електричному полі.</li>
+      <li><b>Діоди:</b> компоненти, що пропускають струм тільки в одному напрямку.</li>
+      <li><b>Транзистори:</b> напівпровідникові елементи для посилення або перемикання електричного сигналу.</li>
+      <li><b>Мікросхеми:</b> інтегровані схеми, що виконують складні функції, наприклад, логічні операції чи управління пристроями.</li>
+      <li><b>Світлодіоди (LED):</b> напівпровідникові пристрої, що випромінюють світло при протіканні струму.</li>
+      <li><b>Реле, дроселі, індуктивності:</b> компоненти для управління струмами та фільтрації сигналів.</li>
+    </ul>
+  </div>
+
+  <div class="container" id="projects">
+    <h2>Проєкти</h2>
+    <p>Знайди цікаві електронні проєкти для початківців та професіоналів. Від простих схем до складних пристроїв з використанням мікроконтролерів.</p>
+  </div>
+
+  <div class="container" id="troubles">
+    <h2>Несправності</h2>
+    <p>Діагностика несправностей електронних пристроїв та можливі рішення. Як знайти проблему та що з нею робити.</p>
+  </div>
+
+  <div class="container" id="faq">
+    <h2>FAQ (Часто запитувані питання)</h2>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleAnswer(this)">Що таке електроніка?</div>
+<div class="faq-answer">Електроніка — це галузь науки та техніки, що вивчає пристрої та схеми, які працюють на електричних та електронних принципах.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleAnswer(this)">Чи можна навчитися електроніці самостійно?</div>
+      <div class="faq-answer">Так, багато матеріалів доступні в інтернеті для самостійного навчання. Почніть з простих схем і поступово переходьте до складніших проєктів.</div>
+    </div>
+  </div>
+
+  <div class="container" id="physics">
+    <h2>Фізика електроніки</h2>
+    <p>Основи фізики, які стоять за електричними явищами, що використовуються в електроніці. Ось основні принципи:</p>
+    <ul>
+      <li>Закони електричних полів та струмів</li>
+      <li>Закон Ома та його застосування</li>
+      <li>Електрична енергія та потужність</li>
+    </ul>
+  </div>
+
+  <div class="container" id="digital">
+    <h2>Цифрова електроніка</h2>
+    <p>Цифрові схеми та логіка, основи роботи з мікроконтролерами та створення цифрових пристроїв, таких як калькулятори або годинники.</p>
+  </div>
+
+  <div class="container" id="analog">
+    <h2>Аналогова електроніка</h2>
+    <p>Аналогові схеми, такі як підсилювачі, фільтри та генератори сигналів. Основи роботи з аналоговими сигналами та пристроями.</p>
+  </div>
+
+  <div class="container" id="microcontrollers">
+    <h2>Мікроконтролери</h2>
+    <p>Основи програмування та використання мікроконтролерів для створення автономних електронних пристроїв.</p>
   </div>
 
   <footer>
-    <p>&copy; 2025 Ivan Tymoshuk. Всі права захищено.</p>
-    <p>
-      Відвідувачі сайту:
-      <img src="https://visitor-badge.laobi.icu/badge?page_id=ivan230809.github.io" alt="лічильник відвідувачів">
-    </p>
+    <p>Світ Електроніки &copy; 2025</p>
   </footer>
-</body>
-</html>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function toggleAnswer(element) {
+      const answer = element.nextElementSibling;
+      answer.style.display = answer.style.display === 'block'
